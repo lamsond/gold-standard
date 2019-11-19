@@ -21,7 +21,6 @@ public class Ghost {
 	}
 	
 	// methods
-	
 	public void attack() {
 		System.out.println("Run for life, Pacman!!!");
 	}
