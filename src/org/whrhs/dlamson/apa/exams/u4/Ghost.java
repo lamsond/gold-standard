@@ -6,9 +6,10 @@ public class Ghost {
 	
 	// static variables
 	private static final int WORLD_WIDTH = 10;
+	private static final int WORLD_HEIGHT = 8;
 	
 	// instance variables
-	private int speed, x;
+	private int speed, x, y;
 	private boolean isAlive;
 	private Color color;
 	
@@ -16,6 +17,7 @@ public class Ghost {
 	public Ghost(Color c) {
 		speed = 1;
 		x = 0;
+		y = 0;
 		isAlive = true;
 		color = c;
 	}
@@ -25,20 +27,23 @@ public class Ghost {
 		System.out.println("Run for life, Pacman!!!");
 	}
 	
-	public void move() {
-		x += speed;
+	public void move(int dx, int dy) {
+		x += dx;
+		y += dy;
 	}
 	
 	public void render() {
-		for(int i = 0; i < WORLD_WIDTH; i++) {
-			if(x == i) {
-				System.out.print("*");
+		for(int j = 0; j < WORLD_HEIGHT; j++) {
+			for(int i = 0; i < WORLD_WIDTH; i++) {
+				if(x == i && y == j) {
+					System.out.print("*");
+				}
+				else {
+					System.out.print("-");
+				}
 			}
-			else {
-				System.out.print("-");
-			}
+			System.out.println("");
 		}
-		System.out.println("");
 	}
 	
 	public String toString() {
@@ -47,12 +52,9 @@ public class Ghost {
 	
 	public static void main(String[] pizza) {
 		Ghost pinky = new Ghost(Color.PINK);
-		pinky.speed = 2;
-		pinky.attack();
 		pinky.render();
-		pinky.move();
-		pinky.render();
-		pinky.move();
+		pinky.move(2, 3);
+		System.out.println("");
 		pinky.render();
 	}
 }
